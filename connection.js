@@ -7,12 +7,11 @@ async function connect() {
     const pass = process.env.PASS;
     const connectionString =  process.env.CONSTRING;
     const url = `mongodb+srv://${user}:${pass}@${connectionString}`;
-    console.log(url);
+
     const client = new MongoClient(url);
 
     try {
         await client.connect();
-    
         await listDatabases(client);
      
     } catch (e) {
@@ -21,7 +20,6 @@ async function connect() {
     finally {
         await client.close();
     }
-    
 }
 
 async function listDatabases(client){
